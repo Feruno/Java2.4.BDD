@@ -12,12 +12,4 @@ public class LoginPageV1 {
 
         return new VerificationPage();
     }
-
-    public VerificationPage validLoginForCucunber(String login, String pass) {
-        $("[data-test-id=login] input").setValue(login);
-        $("[data-test-id=password] input").setValue(pass);
-        $("[data-test-id='action-login'] span").click();
-
-        return new VerificationPage();
-    }
 }

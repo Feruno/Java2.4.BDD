@@ -21,9 +21,4 @@ public class VerificationPage {
         return new DashBoardPage();
     }
 
-    public DashBoardPage validVerifyForCucumber(String validCode) {
-        codeVerif.setValue(validCode);
-        buttonVerif.click();
-        return new DashBoardPage();
-    }
 }

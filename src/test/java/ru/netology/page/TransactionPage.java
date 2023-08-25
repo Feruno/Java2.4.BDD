@@ -24,13 +24,6 @@ public class TransactionPage {
         return 0;
     }
 
-    public int setInfoTransactionSecondCardForCucumber(String sum, String numCard) {
-        amount.setValue(sum);
-        card.setValue(numCard);
-
-        return 0;
-    }
-
     public DashBoardPage validTransaction() {
         actionTransfer.click();
         return new DashBoardPage();
