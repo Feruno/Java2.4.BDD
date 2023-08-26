@@ -5,16 +5,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ru.netology.dataTest.DataHelp;
-import ru.netology.page.DashBoardPage;
 import ru.netology.page.LoginPageV1;
 
-
-import static com.codeborne.selenide.Condition.visible;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class appIbankBuild {
+public class AppIbankBuild {
 
     @BeforeEach
     void setUp() {
@@ -31,18 +28,18 @@ public class appIbankBuild {
         var verificationCode = DataHelp.getVerificationCodeFor(authInfo);
         var dashBoardPage = verificationPage.validVerify(verificationCode);
 
-        var res = dashBoardPage.getCardBalance(0);
-
         var transactionPage = dashBoardPage.cardSelection(1);
 
-        var updDashBoardPage = transactionPage.setInfoTransactionSecondCard(1_000, DataHelp.getFirstCardInfo());
+        transactionPage.setInfoTransactionSecondCard(1_000, DataHelp.getFirstCardInfo());
         transactionPage.validTransaction();
 
-        var balanceFirstCard = dashBoardPage.getCardBalance(0);
-        var balanceSecondCard = dashBoardPage.getCardBalance(1);
+        var actualBalanceFirstCard = dashBoardPage.getCardBalance(0);
+        var expectedBalanceFirstCard = dashBoardPage.getSelectedCardBalance(0);
+        Assertions.assertEquals(expectedBalanceFirstCard, actualBalanceFirstCard);
 
-        Assertions.assertEquals(balanceFirstCard, 9_000);
+        var actualBalanceSecondCard = dashBoardPage.getCardBalance(1);
+        var expectedBalanceSecondCard = dashBoardPage.getSelectedCardBalance(1);
+        Assertions.assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard);
 
-        Assertions.assertEquals(balanceSecondCard, 11_000);
     }
 }

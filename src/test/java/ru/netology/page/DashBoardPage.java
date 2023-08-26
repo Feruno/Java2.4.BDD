@@ -4,7 +4,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.val;
-import ru.netology.dataTest.DataHelp;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -23,15 +22,18 @@ public class DashBoardPage {
     }
 
 
-    public int getFirstCardBalance() {
-        val text = card.first().text();
-        return 0;
+    public int getSelectedCardBalance(Integer id) {
+        val text = card.get(id).text();
+        return extractBalance(text);
     }
 
     public int getCardBalance(Integer id) {
         // TODO: перебрать все карты и найти по атрибуту data-test-id
-        val text = card.get(id).text();
-        return extractBalance(text);
+        for (int i = id; i < card.size(); i++) {
+            val text = card.get(i).text();
+            return extractBalance(text);
+        }
+        return 0;
     }
 
     private int extractBalance(String text) {

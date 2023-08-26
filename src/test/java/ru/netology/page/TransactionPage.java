@@ -17,12 +17,11 @@ public class TransactionPage {
         amount.shouldBe(Condition.visible);
     }
 
-    public int setInfoTransactionSecondCard(Integer amountTr, DataHelp.CardInfo cardNum) {
+    public void setInfoTransactionSecondCard(Integer amountTr, DataHelp.CardInfo cardNum) {
         amount.setValue(String.valueOf(amountTr));
         card.setValue(String.valueOf(cardNum));
-
-        return 0;
     }
+
 
     public DashBoardPage validTransaction() {
         actionTransfer.click();
