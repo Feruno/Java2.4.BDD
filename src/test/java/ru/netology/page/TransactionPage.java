@@ -5,13 +5,16 @@ import com.codeborne.selenide.SelenideElement;
 import lombok.val;
 import ru.netology.dataTest.DataHelp;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class TransactionPage {
 
-    private SelenideElement amount = $("[data-test-id='amount'] input");
-    private SelenideElement card = $("[data-test-id='from'] input");
-    private SelenideElement actionTransfer = $("[data-test-id='action-transfer'] span");
+    private final SelenideElement amount = $("[data-test-id='amount'] input");
+    private final SelenideElement card = $("[data-test-id='from'] input");
+    private final SelenideElement actionTransfer = $("[data-test-id='action-transfer'] span");
+    private final SelenideElement errorMessage = $("[data-test-id='error-message']");
 
     public TransactionPage() {
         amount.shouldBe(Condition.visible);
@@ -26,6 +29,10 @@ public class TransactionPage {
     public DashBoardPage validTransaction() {
         actionTransfer.click();
         return new DashBoardPage();
+    }
+
+    public void findErrorMessage(String expectedText){
+        errorMessage.shouldHave(Condition.exactText(expectedText), Duration.ofSeconds(15) ).shouldBe(Condition.visible);
     }
 
 }

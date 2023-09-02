@@ -2,6 +2,9 @@ package ru.netology.dataTest;
 
 import lombok.Value;
 
+import java.util.Map;
+import java.util.Random;
+
 public class DataHelp {
     @Value
     public static class AuthInfo {
@@ -24,6 +27,13 @@ public class DataHelp {
 
     public static VerificationCode getVerificationCodeFor(AuthInfo authInfo) {
         return new VerificationCode("12345");
+    }
+
+    public static int generateValidAmount(int balance){
+        return new Random().nextInt(Math.abs(balance)) + 1;
+    }
+    public static int generateInvalidAmount(int balance){
+        return Math.abs(balance) + new Random().nextInt(10000);
     }
 
     @Value

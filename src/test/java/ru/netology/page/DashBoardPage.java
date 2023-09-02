@@ -27,15 +27,6 @@ public class DashBoardPage {
         return extractBalance(text);
     }
 
-    public int getCardBalance(Integer id) {
-        // TODO: перебрать все карты и найти по атрибуту data-test-id
-        for (int i = id; i < card.size(); i++) {
-            val text = card.get(i).text();
-            return extractBalance(text);
-        }
-        return 0;
-    }
-
     private int extractBalance(String text) {
         val start = text.indexOf(balanceStart);
         val finish = text.indexOf(balanceFinish);
