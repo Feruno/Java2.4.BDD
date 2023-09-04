@@ -75,10 +75,13 @@ public class AppIbankBuild {
 
         var actualBalanceFirstCard = dashBoardPage.getSelectedCardBalance(0);
         var expectedBalanceFirstCard = balanceFirstCard - sumTransaction;
+
+        Assertions.assertFalse(actualBalanceFirstCard < 0);
         Assertions.assertEquals(expectedBalanceFirstCard, actualBalanceFirstCard);
 
         var actualBalanceSecondCard = dashBoardPage.getSelectedCardBalance(1);
         var expectedBalanceSecondCard = balanceSecondCard + sumTransaction;
+
         Assertions.assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard);
     }
 
